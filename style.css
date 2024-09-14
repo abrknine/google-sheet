@@ -12,9 +12,7 @@
         background-color: #218c74   ;   
         display: flex ;
         align-items: flex-end;
-        padding-left: 1rem;
-        
-
+        padding-left: 1rem;        
     }
 
     .page-action{
@@ -78,9 +76,6 @@
         height: 70%;
 
     }
-
-
-
     .sheet-actions-cont{
         height: 3rem;
         background-color: #ecf0f1;
@@ -89,14 +84,10 @@
         padding-left: 0.5rem;
         padding-right: 0.5rem ;
         gap: 1rem;
-        
-
     }
     .sheet-add-icon > *{
-        display: inline-block;
-
+        display: inline-block;  
     }
-   
     .sheet-add-icon{
         
         width: 2vw;
@@ -124,6 +115,38 @@
     }
     .grid-cont {
         height: calc(100vh - 3rem - 3rem - 2rem - 3rem);
+        position: relative;
+        overflow: scroll;
     }
 
-    
+
+    .top-left-dummy-box{
+        height: 2rem;
+        width: 2rem;
+        background-color: #747d8c ;
+    }
+    .address-col-cont{
+        height: 10rem;
+        width: 2rem;
+        
+
+    }
+    .address-row-cont{
+          height: 2rem;
+          
+    } 
+    .cells-cont{
+        position: absolute;
+        top: 0;
+        left: 2rem;
+       
+         width: 10rem;
+         height: 10rem;
+    }
+    .address-col{
+        height: 2rem;
+        width: 2rem;
+        text-align: center;
+        border: 1px solid #dfe4ea;
+    }
+
