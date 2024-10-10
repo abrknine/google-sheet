@@ -19,7 +19,6 @@ for( let i=0; i<cols; i++ ){
     addressRow.setAttribute("class", "address-row");
     addressRow.innerText =String.fromCharCode(65+i)
     addressRowCont.appendChild(addressRow);
- 
 }
 
 for (let i=0; i<rows; i++){
@@ -29,12 +28,17 @@ for (let i=0; i<rows; i++){
       let cell =document.createElement("div")
       cell.setAttribute("class" , "cell" )
       cell.setAttribute("contenteditable", "true")
+      cell.setAttribute("spellcheck", "false")  
+      //atribute for cell and row identification
+      cell.setAttribute("rid",i)
+      cell.setAttribute("cid",j)  //gonna use this in  activecell function in cell-properties.js in unique way
       rowCont.appendChild(cell);
       addListenerForAddressBarDisplay(cell,i,j);
     }
     cellsCont.appendChild(rowCont);
 }
 
+//soley for upadting rowand colid in adressbar where i am working
 function addListenerForAddressBarDisplay(cell, i,j){
     cell.addEventListener("click",(e)=>{
         let rowID=i+1;
@@ -44,3 +48,12 @@ function addListenerForAddressBarDisplay(cell, i,j){
 
 
 }
+
+//by default click on first cell      via dom
+
+let firstCell=document.querySelector(".cell");  //see line 29 you five each cell an class(in form of atribute) as cell
+
+firstCell.click(); 
+ 
+
+
