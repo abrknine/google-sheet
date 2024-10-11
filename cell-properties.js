@@ -100,6 +100,41 @@ fontFamily.addEventListener("change", (e)=>{
 
 })
 
+fontColor.addEventListener("change",(e)=>{
+    let  address=addressBar.value
+    let [cell,cellProp]= activecell(address); 
+
+    cellProp.fontColor=fontColor.value //datachange
+    cell.style.color=cellProp.fontColor;
+    fontColor.value=cellProp.fontColor;  //onchage pickup value attribute
+
+})
+BGcolor.addEventListener("change",(e)=>{
+    let  address=addressBar.value
+    let [cell,cellProp]= activecell(address); 
+
+    cellProp.BGcolor=BGcolor.value //datachange
+    cell.style.backgroundColor=cellProp.BGcolor;
+    BGcolor.value=cellProp.BGcolor;  //onchage pickup value attribute
+
+})
+
+alignment.forEach(( alignElem) => {
+    alignElem.addEventListener("click",(e)=>{
+        let  address=addressBar.value
+        let [cell,cellProp]= activecell(address); 
+
+        let  alignValue=e.target.classList[0];
+        cell.value.textalign
+        switch(alignValue){
+
+        }
+
+    
+
+    })
+    
+});
 
 
 
@@ -129,3 +164,33 @@ function decodeRIDCIDfromAddress(address){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+<div>
+<div class="al">
+
+</div>
+<div class="al"> </div>
+<div class="al"> </div>
+</div>
+
+let a= document.querySelectorAll(".al");
+let b=a[0];
+let c=a[1];
+let d=a[2];*/
