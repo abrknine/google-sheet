@@ -34,7 +34,7 @@ let fontSize=document.querySelector(".font-size-prop")
 let fontFamily=document.querySelector(".font-family-prop")
 let   fontColor=document.querySelector(" .font-color-prop ")
 let   BGcolor=document.querySelector(" .BGcolor-prop ")
-let   alignment=document.querySelector(" .alignment ")
+let alignment = document.querySelectorAll(".alignment");
 
 let   leftAlign=alignment[0];
 let   centerAlign=alignment[1];
@@ -56,6 +56,7 @@ bold.addEventListener("click", (e)=>{
     cell.style.fontWeight= cellProp.bold?"bold":"normal";  //styling ui or changing ui  
     bold.style.backgroundColor= cellProp.bold? activeColorProp:inactiveColor 
 
+   
 })
 italic.addEventListener("click", (e)=>{
     let  address=addressBar.value
@@ -123,12 +124,31 @@ alignment.forEach(( alignElem) => {
     alignElem.addEventListener("click",(e)=>{
         let  address=addressBar.value
         let [cell,cellProp]= activecell(address); 
+        //console.log(cell,cellProp);
 
         let  alignValue=e.target.classList[0];
-        cell.value.textalign
-        switch(alignValue){
+        console.log(e.target);
+        cellProp.alignment=alignValue; //datachange
+        cell.style.textAlign=cellProp.alignment//ui change
 
+        switch(alignValue){ // uichange of property bar
+            case "left":        
+                leftAlign.style.backgroundColor=activeColorProp;
+                centerAlign.style.backgroundColor=inactiveColorProp;
+                rightAlign.style.backgroundColor=inactiveColorProp;
+                break;
+           case "center":
+            leftAlign.style.backgroundColor=inactiveColorProp;
+                centerAlign.style.backgroundColor=activeColorProp;
+                rightAlign.style.backgroundColor=inactiveColorProp;
+             break;
+             case "left":
+                leftAlign.style.backgroundColor=inactiveColorProp;
+                centerAlign.style.backgroundColor=inactiveColorProp;
+                rightAlign.style.backgroundColor=activeColorProp;
+                break;
         }
+        
 
     
 
@@ -136,6 +156,64 @@ alignment.forEach(( alignElem) => {
     
 });
 
+ //code when we select new cell so we have to update the state of all properties of preperty tab
+let allCells =document.querySelectorAll(".cell");
+for(let i=0; i<allCells.length; i++){
+    addListenerToAttachCellProperties(allCells[i]);
+} 
+
+function  addListenerToAttachCellProperties(cell){
+    cell.addEventListener("click",(e)=>{
+
+        let address=addressBar.value
+        let [rid,cid]= decodeRIDCIDfromAddress(address)  
+        let cellProp=sheetDB[rid][cid];  
+
+
+        // apply cell properties
+        cell.style.fontWeight= cellProp.bold?"bold":"normal";
+        cell.style.fontStyle= cellProp.italic?"italic":"normal"; 
+        cell.style.textDecoration= cellProp.underline?"underline":"none";
+        cell.style.fontSize=cellProp.fontSize + "px";
+        cell.style.fontFamily=cellProp.fontFamily;
+        cell.style.color=cellProp.fontColor;
+        cell.style.backgroundColor=cellProp.BGcolor=="#000000" ? "transparent":cellProp.BGcolor     ;
+        cell.style.textAlign=cellProp.alignment
+
+       
+        
+        //apply property to ui container ->suppose we cam to container which has already applied value so updating style of properites(of property elem ) using cellprop     
+        bold.style.backgroundColor= cellProp.bold? activeColorProp:inactiveColor 
+        italic.style.backgroundColor= cellProp.italic? activeColorProp:inactiveColor 
+        underline.style.backgroundColor= cellProp.underline? activeColorProp:inactiveColor 
+        fontSize.value=cellProp.fontSize;
+        fontFamily.value=cellProp.fontFamily;
+        fontColor.value=cellProp.fontColor;
+        BGcolor.value=cellProp.BGcolor;  
+        switch(cellProp.align){ // uichange of property bar
+            case "left":        
+                leftAlign.style.backgroundColor=activeColorProp;
+                centerAlign.style.backgroundColor=inactiveColorProp;
+                rightAlign.style.backgroundColor=inactiveColorProp;
+                break;
+           case "center":
+            leftAlign.style.backgroundColor=inactiveColorProp;
+                centerAlign.style.backgroundColor=activeColorProp;
+                rightAlign.style.backgroundColor=inactiveColorProp;
+             break;
+             case "left":
+                leftAlign.style.backgroundColor=inactiveColorProp;
+                centerAlign.style.backgroundColor=inactiveColorProp;
+                rightAlign.style.backgroundColor=activeColorProp;
+                break;
+        }
+
+
+
+          
+
+    })
+}
 
 
 
