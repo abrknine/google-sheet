@@ -31,7 +31,7 @@ for (let i=0; i<rows; i++){
       cell.setAttribute("spellcheck", "false")  
       //atribute for cell and row identification
       cell.setAttribute("rid",i)
-      cell.setAttribute("cid",j)  //gonna use this in  activecell function in cell-properties.js in unique way
+      cell.setAttribute("cid",j)  //gonna use this in  getCellAndCellProp function in cell-properties.js in unique way
       rowCont.appendChild(cell);
       addListenerForAddressBarDisplay(cell,i,j);
     }
